@@ -1,0 +1,47 @@
+To list all databases:
+
+ 	show dbs
+
+To enter or use given database:
+
+ 	use databasename
+
+To list all collections:
+
+	show collections
+
+Output:
+
+collection1
+collection2
+system.indexes
+(or)
+
+	show tables
+
+Output:
+
+collection1
+collection2
+system.indexes
+(or)
+
+	db.getCollectionNames()
+
+Output:
+
+[ "collection1", "collection2", "system.indexes" ]
+
+To enter or use given collection
+
+	use collectionname
+
+find records in a collection with hyphen
+
+	db["3test"].find()
+
+	db.getCollection("3test").find()
+
+to remove records from a collection
+	
+	db["scotch-users"].remove({}) -- {} is empty query means remove all docs

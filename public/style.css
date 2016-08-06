@@ -1,0 +1,17 @@
+.contact{
+	padding: 80px 120px;
+}
+
+.buttn {
+	margin-top:10px;
+	border-radius: 8px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #f1f1f1;
+      transition: .2s;
+  }
+.buttn:hover, .buttn:focus {
+      border: 1px solid #333;
+      background-color: #fff;
+      color: #000;
+  }
