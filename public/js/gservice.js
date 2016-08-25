@@ -55,10 +55,10 @@ angular.module('gservice', [])
 
                 // Create popup windows for each record
                 var  contentString =
-                    '<p><b>Username</b>: ' + user.username +
-                    '<br><b>Cuisine</b>: ' + user.cuisine +
-                    '<br><b>Gender</b>: ' + user.gender +
+                    '<p><b>Cuisine</b>: ' + user.cuisine +
                     '<br><b>Description</b>: ' + user.desc +
+                    '<br><b>Username</b>: ' + user.username +
+                    '<br><b>email</b>: ' + user.email +
                     '</p>';
 
                 // Converts each of the JSON records into Google Maps Location format (Note [Lat, Lng] format).
@@ -116,26 +116,43 @@ var initialize = function(latitude, longitude) {
     var initialLocation = new google.maps.LatLng(latitude, longitude);
     var marker = new google.maps.Marker({
         position: initialLocation,
-        draggable: true,
-          animation: google.maps.Animation.DROP,
+          animation: google.maps.Animation.BOUNCE,
         map: map,
         icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     });
-    marker.addListener('click', toggleBounce);
+
     lastMarker = marker;
 
-    function toggleBounce() {
-        if (marker.getAnimation() !== null) {
+    // Clicking on the Map moves the bouncing red marker
+    google.maps.event.addListener(map, 'click', function(e){
+    var marker = new google.maps.Marker({
+        position: e.latLng,
+        animation: google.maps.Animation.BOUNCE,
+        map: map,
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    });
 
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
-          // Update Broadcasted Variable (lets the panels know to change their lat, long values)
+    // When a new spot is selected, delete the old red bouncing marker
+    if(lastMarker){
+        lastMarker.setMap(null);
+    }
+
+    // Create a new red bouncing marker and move to it
+    lastMarker = marker;
+    map.panTo(marker.position);
+
+     // Update Broadcasted Variable (lets the panels know to change their lat, long values)
     googleMapService.clickLat = marker.getPosition().lat();
     googleMapService.clickLong = marker.getPosition().lng();
     $rootScope.$broadcast("clicked");
-      };
+
+});
+
+
+
+
+
+         
 
     
 

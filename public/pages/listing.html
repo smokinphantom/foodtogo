@@ -23,18 +23,22 @@
       </ng-pluralize>
     </h4>
 
-    <table class="table table-hover table-bordered table-striped">
+    <table class="table table-hover table-striped">
+      <thead>
       <tr>
         <th><a href ng-click="sortBy('name')">Name {{sortIconFor('name')}}</a></th>
         <th><a href ng-click="sortBy('price')">Cuisine {{sortIconFor('price')}}</a></th>
-        <th><a href ng-click="sortBy('rating')">Description {{sortIconFor('rating')}}</a></th>
+        <th><a href ng-click="sortBy('rating')">Description {{sortIconFor('rating')}}</a>
+        </th>
       </tr>
-      <tr ng-repeat="listing in listings">
+      </thead>
+      <tbody ng-repeat="listing in listings">
+      <tr data-toggle="collapse" data-target=".{{listing._id}}">
         <td>
-          <a href="#/menu/{{restaurant.id}}">
-            <!--<img class="img-rounded pull-left" ng-src="img/restaurants/{{restaurant.id}}.jpg">-->
-            <b>{{listing.username}}</b>
-          </a>
+          <!--<a href="#/menu/{{restaurant.id}}">
+            <img class="img-rounded pull-left" ng-src="img/restaurants/{{restaurant.id}}.jpg">-->
+            <p>{{listing.username}}</p>
+          <!--</a>-->
           
         </td>
         <td>
@@ -46,6 +50,35 @@
           <!--<fm-rating ng-model="$parent.restaurant.price" symbol="$" readonly="true" ></fm-rating>-->
         </td>
       </tr>
+
+      <tr >
+            <td class="hiddenRow">
+                <div class="accordion-body collapse {{listing._id}}">
+                  <p ng-bind="listing.email">
+                  </p>
+                </div>
+            </td>
+            <td class="hiddenRow">
+                <div class="accordion-body collapse {{listing._id}}">
+                  <p ng-bind="listing.phone">
+                  </p>
+                </div>
+            </td>
+            <td class="hiddenRow">
+                <div class="accordion-body collapse {{listing._id}}">
+                  <table>
+                            <tr>
+                                <td>Revealed item 1</td>
+                            </tr>
+                            <tr>
+                                <td>Revealed item 2</td>
+                            </tr>
+                        </table>
+                  </p>
+                </div>
+            </td>
+        </tr>
+        </tbody>
     </table>
   </div>
 </div>

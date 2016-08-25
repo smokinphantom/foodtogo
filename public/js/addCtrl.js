@@ -27,7 +27,6 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
     $scope.$apply(function(){
         $scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
         $scope.formData.longitude = parseFloat(gservice.clickLong).toFixed(3);
-        $scope.formData.htmlverified = "Nope (Thanks for spamming my map...)";
         });
     //});
     });
@@ -39,11 +38,13 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
         // Grabs all of the text box fields
         var userData = {
             username: $scope.formData.username,
-            gender: $scope.formData.gender,
+            email: $scope.formData.email,
+            phone: $scope.formData.phone,
             cuisine: $scope.formData.cuisine,
             desc: $scope.formData.desc,
+            country: $scope.formData.country,
+            state: $scope.formData.state,
             location: [$scope.formData.longitude, $scope.formData.latitude],
-            htmlverified: $scope.formData.htmlverified
         };
 
         // Saves the user data to the db
@@ -52,9 +53,12 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
 
                 // Once complete, clear the form (except location)
                 $scope.formData.username = "";
-                $scope.formData.gender = "";
-                $scope.formData.cuisine = "";
-                $scope.formData.desc = "";
+                $scope.formData.email="";
+                $scope.formData.phone="";
+                $scope.formData.cuisine="";
+                $scope.formData.desc="";
+                $scope.formData.country="";
+                $scope.formData.state="";
                 
                 // Refresh the map with new data
                 gservice.refresh(parseFloat($scope.formData.latitude), parseFloat($scope.formData.longitude));
