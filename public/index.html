@@ -42,7 +42,12 @@
 
     <script type="text/javascript">
     function changeColor(id) { 
-        $("li").removeClass("tab-current")   
+        $("li").removeClass("tab-current");
+        if(id.textContent==="Home")
+             $(".tabs").removeClass("custom-nav"); 
+        else
+             $(".tabs").addClass("custom-nav");
+
         id.className="tab-current";
     }
 </script>
@@ -57,8 +62,8 @@
                         <ul>
                             <li onclick="changeColor(this)"><a href="#/" class="icon icon-home"><span>Home</span></a></li>
                             <li onclick="changeColor(this)"><a href="#listing" class="icon icon-gift"><span>Listing</span></a></li>
-                            <li onclick="changeColor(this)"><a href="#contact" class="icon icon-upload"><span>Contact</span></a></li>
-                            <li onclick="changeColor(this)"><a href="#section-iconbox-4" class="icon icon-coffee"><span>Work</span></a></li>
+                            <li onclick="changeColor(this)"><a href="#post" class="icon icon-upload"><span>Post</span></a></li>
+                            <li onclick="changeColor(this)"><a href="#contact" class="icon icon-coffee"><span>Work</span></a></li>
                         </ul>
                     </nav>
                 </div><!-- /tabs -->
@@ -83,6 +88,7 @@
         <div ng-view></div>
 
         </div>
+        
 
 </body>
 </html>

@@ -8,6 +8,11 @@ var app = angular.module('meanMapApp', ['addCtrl','listCtrl', 'geolocation','gse
             // route for the home page
             .when('/', {
                 templateUrl : 'pages/home.html',
+            })
+
+            // route for the post page
+            .when('/post', {
+                templateUrl : 'pages/post.html',
                 controller  : 'addCtrl'
             })
 

@@ -1,118 +1,23 @@
-<div class="container" ng-controller="addCtrl">
-    <div class="header">
-        <ul class="nav nav-pills pull-right">
-           <!-- <li active><a href="">Join the Team</a></li>
-            <li disabled><a href="">Find Teammates</a></li>-->
-        </ul>
-        <h3 class="text-muted">Food To Go</h3>
-    </div>
-    <!-- Map and Side Panel -->
-    <div class="row content">
-        <!-- Google Map -->
-        <div class="col-md-6">
-            <div id="map" style="width:555px; height:665px"></div>
-        </div>
-        <!-- Side Panel -->
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <!-- Panel Title -->
-                <div class="panel-heading">
-                    <h2 class="panel-title text-center">Post your Listing!<span class="glyphicon glyphicon-map-marker"></span></h2>
-                </div>
-                <!-- Panel Body -->
-                <div class="panel-body">
-                    <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
-                    <form name ="addForm" novalidate>
-                        <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
-                        <div class="form-group">
-                            <label for="username">Name * <span class="badge">Fields with * required</span></label>
-                            <input type="text" class="form-control" id="username" placeholder="John Doe" ng-model="formData.username" required>
-                        </div> 
-                        <div class="form-group">
-                            <label for="cuisine">Email  <span class="glyphicon glyphicon-envelope"></span> *</label>
-                            <input type="email" class="form-control" id="email" placeholder="aa@xxxx.com" ng-model="formData.email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone  <span class="glyphicon glyphicon-envelope"></span></label>
-                            <input type="tel" class="form-control" id="tel" placeholder="123-456-7890" ng-model="formData.phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="cuisine">Cuisine  <span class="glyphicon glyphicon-cutlery"></span> *</label>
-                            <input type="text" class="form-control" id="cuisine" placeholder="Indian" ng-model="formData.cuisine" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Description</label> *
-                            <textarea class="form-control" rows="3" id="description" placeholder="Chapati,paneer tikka masala" ng-model="formData.desc" required></textarea>
-                            
-                        </div>
 
-                        <label for="country">Country</label> *
-                        <select class="form-control" id="country" name ="country" ng-model="formData.country" required></select><br/>
-                        <label for="state">State</label> *
-                        <select class="form-control" name ="state" id ="state" ng-model="formData.state" required></select><br/>
-
-                        <div class="form-group">
-                            <label for="latitude">Latitude</label>
-                            <input type="text" class="form-control" id="latitude" value="39.500" ng-model="formData.latitude" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="longitude">Longitude</label>
-                            <input type="text" class="form-control" id="longitude" value="-98.350" ng-model="formData.longitude" readonly>
-                        </div>
-                        <div class="form-group">
-                            <input type="file" id="files" class="form-control" name="files[]" />
-                            <output id="list"></output>
-                        </div>
-
-
- <script language="javascript">
-populateCountries("country", "state");
-
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-debugger;
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
-
-      // Only process image files.
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-
-      var reader = new FileReader();
-      $("#list").empty();
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-        return function(e) {
-          // Render thumbnail.
-          var span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', escape(theFile.name), '"/>'].join('');
-          document.getElementById('list').insertBefore(span, null);
-        };
-      })(f);
-
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
-    }
-  }
-
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+<div class="container">
   
- </script>   
+  <div class="navbar navbar-fixed-bottom">
+    <p class="text-center"><span class="glyphicon glyphicon-check"></span> Mahmood Contractor @ 2016</p>
+  </div>
 
-
-                        
-                        <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
-                        <button type="submit" class="btn btn-danger btn-block" ng-click="createUser()">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr/>
-    <!-- Footer -->
-    <div class="footer">
-        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Mahmood Contractor @ 2016</p>
-    </div>
 </div>
+
+<style>
+  
+  body {
+    background-image: url(../img/2009.png);
+     background-size: cover;
+  }
+</style>
+
+<script>
+
+$(window).load(function(){ 
+  $(".custom-nav").removeClass("custom-nav");
+})
+</script>
