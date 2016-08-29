@@ -40,7 +40,13 @@
     <script src="js/listing-custom.js"></script>
     
 
-    
+    <script type="text/javascript">
+    function changeColor(id) { 
+        $("li").removeClass("tab-current")   
+        id.className="tab-current";
+    }
+</script>
+
 
 </head>
 <body>
@@ -49,10 +55,10 @@
                 <div class="tabs tabs-style-iconbox custom-nav">
                     <nav>
                         <ul>
-                            <li><a href="#/" class="icon icon-home"><span>Home</span></a></li>
-                            <li><a href="#listing" class="icon icon-gift"><span>Listing</span></a></li>
-                            <li><a href="#contact" class="icon icon-upload"><span>Contact</span></a></li>
-                            <li><a href="#section-iconbox-4" class="icon icon-coffee"><span>Work</span></a></li>
+                            <li onclick="changeColor(this)"><a href="#/" class="icon icon-home"><span>Home</span></a></li>
+                            <li onclick="changeColor(this)"><a href="#listing" class="icon icon-gift"><span>Listing</span></a></li>
+                            <li onclick="changeColor(this)"><a href="#contact" class="icon icon-upload"><span>Contact</span></a></li>
+                            <li onclick="changeColor(this)"><a href="#section-iconbox-4" class="icon icon-coffee"><span>Work</span></a></li>
                         </ul>
                     </nav>
                 </div><!-- /tabs -->
