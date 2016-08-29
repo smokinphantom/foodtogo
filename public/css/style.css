@@ -27,6 +27,10 @@
     margin: 10px 5px 0 0;
 }
 
+.custom-nav{
+  background-color: #1584A5;
+}
+
 table.fixed {table-layout:fixed; width:555px;}/*Setting the table width is important!*/
 table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
 table.fixed td:nth-of-type(1) {width:190px;}/*Setting the width of column 1.*/
