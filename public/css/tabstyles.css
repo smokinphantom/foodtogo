@@ -62,7 +62,7 @@
 }
 
 .tabs-style-iconbox nav ul li.tab-current a {
-	background: #fff;
+	background: rgba(255,255,255,0.7);
 	box-shadow: -1px 0 0 #fff;
 }
 
