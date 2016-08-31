@@ -41,15 +41,32 @@
     
 
     <script type="text/javascript">
-    function changeColor(id) { 
-        $("li").removeClass("tab-current");
-        if(id.textContent==="Home")
-             $(".tabs").removeClass("custom-nav"); 
-        else
-             $(".tabs").addClass("custom-nav");
 
-        id.className="tab-current";
-    }
+    $(document).ready(function(){
+
+        $("A").each(function () {
+             if (this.hash == location.hash) {
+                 $(this).parent().addClass('tab-current');
+             }
+             if(location.hash!=="#/")
+                $(this).parent().parent().addClass("custom-nav");
+            else
+                 $(this).parent().parent().removeClass("custom-nav");
+        });
+
+
+        $("#nav a").on("click",function(event){
+
+            $(".tab-current").removeClass("tab-current");
+            $(this).parent().addClass("tab-current");
+            //we dont need custom-nav on home page
+            if($(this).text()!=="Home")
+                $(this).parent().parent().addClass("custom-nav");
+            else
+                 $(this).parent().parent().removeClass("custom-nav");
+        })
+    });
+
 </script>
 
 
@@ -59,11 +76,11 @@
         <header>
                 <div class="tabs tabs-style-iconbox">
                     <nav>
-                        <ul>
-                            <li onclick="changeColor(this)"><a href="#/" class="icon icon-home"><span>Home</span></a></li>
-                            <li onclick="changeColor(this)"><a href="#listing" class="icon icon-gift"><span>Listing</span></a></li>
-                            <li onclick="changeColor(this)"><a href="#post" class="icon icon-upload"><span>Post</span></a></li>
-                            <li onclick="changeColor(this)"><a href="#contact" class="icon icon-coffee"><span>Work</span></a></li>
+                        <ul id="nav">
+                            <li ><a href="#/" class="icon icon-home "><span>Home</span></a></li>
+                            <li ><a href="#/listing" class="icon icon-gift"><span>Listing</span></a></li>
+                            <li ><a href="#/post" class="icon icon-upload"><span>Post</span></a></li>
+                            <li ><a href="#/contact" class="icon icon-coffee"><span>Contact</span></a></li>
                         </ul>
                     </nav>
                 </div><!-- /tabs -->
