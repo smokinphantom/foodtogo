@@ -60,7 +60,7 @@
                             <input type="text" class="form-control" id="longitude" value="-98.350" ng-model="formData.longitude" readonly>
                         </div>
                         <div class="form-group">
-                            <input type="file" id="files" class="form-control" name="files[]" />
+                            <input type="file" id="files" onchange="angular.element(this).scope().uploadFile(this.files)" class="form-control" name="files" />
                             <output id="list"></output>
                         </div>
 
@@ -97,7 +97,7 @@ debugger;
     }
   }
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  //document.getElementById('files').addEventListener('change', handleFileSelect, false);
   
  </script>   
 

@@ -31,6 +31,18 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
     //});
     });
     
+    $scope.uploadFile = function(files) {
+    var fd = new FormData();
+    //Take the first selected file
+    fd.append("file", files[0]);
+
+    $http.post('/upload', fd, 
+    {
+        headers: {'Content-Type': undefined },
+        transformRequest: angular.identity
+    }).success( "...all right!..." ).error( "..damn!..." );
+
+    };
 
     // Creates a new user based on the form fields
     $scope.createUser = function() {
