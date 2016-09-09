@@ -65,7 +65,7 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
         })
         .success(function (data) {
 
-                 Once complete, clear the form (except location)
+                 //Once complete, clear the form (except location)
                 $scope.formData.username = "";
                 $scope.formData.email="";
                 $scope.formData.phone="";
