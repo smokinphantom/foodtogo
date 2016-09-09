@@ -2,29 +2,79 @@
 	padding: 80px 120px;
 }
 
+#main{
+  margin: auto;
+}
+
+.clear:after {
+  clear: both;
+}
+
+.image-left{
+  height:100px;
+  width:100px;
+  float:left;
+  margin-right:12px;
+}
+
+.content-right{
+  float:left;
+}
+
+h4{
+  color: #E18A07; 
+  font-family: 'Raleway',sans-serif; 
+  font-size: 25px; 
+  font-weight: 800; 
+  line-height: 36px; 
+  margin: 0 0 14px; 
+  text-align: left;
+}
+
+h5{
+  color: #99CCCC; 
+  font-family: 'Raleway',sans-serif; 
+  font-size: 17px; 
+}
+
+td > div > p{
+  color: #99CCCC; 
+  font-family: 'Raleway',sans-serif; 
+  font-size: 17px; 
+}
+
+.fixed-width{
+  width:185px;
+  height:123px;
+}
+
 .buttn {
 	margin-top:10px;
 	border-radius: 8px;
-      padding: 10px 20px;
-      background-color: #333;
-      color: #f1f1f1;
-      transition: .2s;
-  }
+  padding: 10px 20px;
+  background-color: #333;
+  color: #f1f1f1;
+  transition: .2s;
+}
 .buttn:hover, .buttn:focus {
-      border: 1px solid #333;
-      background-color: #fff;
-      color: #000;
-  }
+  border: 1px solid #333;
+  background-color: #fff;
+  color: #000;
+}
 
 .hiddenRow {
-    padding: 0 !important;
+  padding: 0 !important;
+}
+
+.table > tbody > tr >td.hiddenRow{
+  border-top: none;
 }
 
 .thumb {
-    height: 75px;
-    width: 150px;
-    border: 1px solid #000;
-    margin: 10px 5px 0 0;
+  height: 75px;
+  width: 150px;
+  border: 1px solid #000;
+  margin: 10px 5px 0 0;
 }
 
 .custom-nav{

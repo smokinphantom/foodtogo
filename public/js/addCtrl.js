@@ -27,25 +27,15 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
     $scope.$apply(function(){
         $scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
         $scope.formData.longitude = parseFloat(gservice.clickLong).toFixed(3);
-        });
-    //});
     });
+    //});
+});
     
-    $scope.uploadFile = function(files) {
-    var fd = new FormData();
-    //Take the first selected file
-    fd.append("file", files[0]);
-
-    $http.post('/upload', fd, 
-    {
-        headers: {'Content-Type': undefined },
-        transformRequest: angular.identity
-    }).success( "...all right!..." ).error( "..damn!..." );
-
-    };
-
     // Creates a new user based on the form fields
     $scope.createUser = function() {
+
+        var fd= new FormData();
+        fd.append('file', $scope.myFile);
 
         // Grabs all of the text box fields
         var userData = {
@@ -56,14 +46,26 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
             desc: $scope.formData.desc,
             country: $scope.formData.country,
             state: $scope.formData.state,
-            location: [$scope.formData.longitude, $scope.formData.latitude],
+            location: [$scope.formData.longitude, $scope.formData.latitude]
         };
 
-        // Saves the user data to the db
-        $http.post('/users', userData)
-            .success(function (data) {
+        fd.append("data", JSON.stringify(userData));
 
-                // Once complete, clear the form (except location)
+        // Saves the user data to the db
+        $http.post('/users', fd,
+        {
+
+            withCredentials : false,
+
+            headers : {
+                'Content-Type' : undefined
+            },
+            transformRequest : angular.identity
+
+        })
+        .success(function (data) {
+
+                 Once complete, clear the form (except location)
                 $scope.formData.username = "";
                 $scope.formData.email="";
                 $scope.formData.phone="";
@@ -74,9 +76,9 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
                 
                 // Refresh the map with new data
                 gservice.refresh(parseFloat($scope.formData.latitude), parseFloat($scope.formData.longitude));
-                })
-            .error(function (data) {
-                console.log('Error: ' + data);
-            });
+            })
+        .error(function (data) {
+            console.log('Error: ' + data);
+        });
     };
 });

@@ -23,9 +23,9 @@ listCtrl.controller('listCtrl', function($scope, $http,$rootScope,$timeout, gser
         $scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
         $scope.formData.longitude = parseFloat(gservice.clickLong).toFixed(3);
         $scope.formData.htmlverified = "Nope (Thanks for spamming my map...)";
-        });*/
+    });*/
     //});
-    });
+});
     
 
     // Creates a new user based on the form fields
@@ -33,14 +33,14 @@ listCtrl.controller('listCtrl', function($scope, $http,$rootScope,$timeout, gser
 
         // Saves the user data to the db
         $http.get('/users')
-            .success(function (data) {
+        .success(function (data) {
 
-                $scope.listings = data;
-                console.log(data);
-                
-                })
-            .error(function (data) {
-                console.log('Error: ' + data);
-            });
+            $scope.listings = data;
+            console.log(data);
+            
+        })
+        .error(function (data) {
+            console.log('Error: ' + data);
+        });
     };
 });

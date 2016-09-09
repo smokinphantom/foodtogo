@@ -45,14 +45,14 @@
     $(document).ready(function(){
 
         $("A").each(function () {
-             if (this.hash == location.hash) {
-                 $(this).parent().addClass('tab-current');
-             }
-             if(location.hash!=="#/")
-                $(this).parent().parent().addClass("custom-nav");
-            else
-                 $(this).parent().parent().removeClass("custom-nav");
-        });
+           if (this.hash == location.hash) {
+               $(this).parent().addClass('tab-current');
+           }
+           if(location.hash!=="#/")
+            $(this).parent().parent().addClass("custom-nav");
+        else
+           $(this).parent().parent().removeClass("custom-nav");
+   });
 
 
         $("#nav a").on("click",function(event){
@@ -63,27 +63,27 @@
             if($(this).text()!=="Home")
                 $(this).parent().parent().addClass("custom-nav");
             else
-                 $(this).parent().parent().removeClass("custom-nav");
-        })
+               $(this).parent().parent().removeClass("custom-nav");
+       })
     });
 
-</script>
+    </script>
 
 
 </head>
 <body>
-<!-- HEADER AND NAVBAR -->
-        <header>
-                <div class="tabs tabs-style-iconbox">
-                    <nav>
-                        <ul id="nav">
-                            <li ><a href="#/" class="icon icon-home "><span>Home</span></a></li>
-                            <li ><a href="#/listing" class="icon icon-gift"><span>Listing</span></a></li>
-                            <li ><a href="#/post" class="icon icon-upload"><span>Post</span></a></li>
-                            <li ><a href="#/contact" class="icon icon-coffee"><span>Contact</span></a></li>
-                        </ul>
-                    </nav>
-                </div><!-- /tabs -->
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <div class="tabs tabs-style-iconbox">
+            <nav>
+                <ul id="nav">
+                    <li ><a href="#/" class="icon icon-home "><span>Home</span></a></li>
+                    <li ><a href="#/listing" class="icon icon-gift"><span>Listing</span></a></li>
+                    <li ><a href="#/post" class="icon icon-upload"><span>Post</span></a></li>
+                    <li ><a href="#/contact" class="icon icon-coffee"><span>Contact</span></a></li>
+                </ul>
+            </nav>
+        </div><!-- /tabs -->
 
                 <!--<div class="navbar-header">
                     <a class="navbar-brand" href="/">Food To Go</a>
@@ -95,17 +95,17 @@
                     <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
                 </ul>-->
 
-        </header>
+            </header>
 
-        <!-- MAIN CONTENT AND INJECTED VIEWS -->
-        <div id="main">
+            <!-- MAIN CONTENT AND INJECTED VIEWS -->
+            <div id="main">
 
-            <!-- angular templating -->
-        <!-- this is where content will be injected -->
-        <div ng-view></div>
+                <!-- angular templating -->
+                <!-- this is where content will be injected -->
+                <div ng-view></div>
 
-        </div>
+            </div>
 
 
-</body>
-</html>
+        </body>
+        </html>

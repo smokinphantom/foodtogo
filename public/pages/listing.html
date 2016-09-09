@@ -1,90 +1,83 @@
 <div class="container" ng-init="getUsers()" ng-controller="listCtrl">
 
   <div class="header">
-        <ul class="nav nav-pills pull-right">
+    <ul class="nav nav-pills pull-right">
            <!-- <li active><a href="">Join the Team</a></li>
-            <li disabled><a href="">Find Teammates</a></li>-->
-        </ul>
-        <h3 class="text-muted">Food To Go</h3>
-    </div>
-  <div class="row content">
+           <li disabled><a href="">Find Teammates</a></li>-->
+         </ul>
+         <h3 class="text-muted">Food To Go</h3>
+       </div>
+       <div class="row content">
         <!-- Google Map -->
         <div class="col-md-4">
-            <div id="map" style="width:100%; height:365px">
-            </div>
+          <div id="map" style="width:100%; height:365px">
+          </div>
         </div>
         <!-- Side Panel -->
-  <div class="col-md-8">
-    <h4>
-      <ng-pluralize count="listings.length"
-                    when="{'0'    : 'No Listing found. :-(',
-                           'one'  : '1 Listing found!',
-                           'other': '{} Listings found!'}">
-      </ng-pluralize>
-    </h4>
+        <div class="col-md-8">
+          <h4>
+            <ng-pluralize count="listings.length"
+            when="{'0'    : 'No Listing found. :-(',
+            'one'  : '1 Listing found!',
+            'other': '{} Listings found!'}">
+          </ng-pluralize>
+        </h4>
 
-    <table class="table table-hover table-striped">
-      <thead>
-      <tr>
-        <th><a href ng-click="sortBy('name')">Name {{sortIconFor('name')}}</a></th>
-        <th><a href ng-click="sortBy('price')">Cuisine {{sortIconFor('price')}}</a></th>
-        <th><a href ng-click="sortBy('rating')">Description {{sortIconFor('rating')}}</a>
-        </th>
-      </tr>
-      </thead>
-      <tbody ng-repeat="listing in listings">
-      <tr data-toggle="collapse" data-target=".{{listing._id}}">
-        <td>
-          <!--<a href="#/menu/{{restaurant.id}}">
-            <img class="img-rounded pull-left" ng-src="img/restaurants/{{restaurant.id}}.jpg">-->
-            <p>{{listing.username}}</p>
-          <!--</a>-->
+        <table class="table table-hover table-striped">
           
-        </td>
-        <td>
-          <p>{{listing.cuisine}}</p>
-          <!--<fm-rating ng-model="$parent.restaurant.rating" readonly="true"></fm-rating>-->
-        </td>
-        <td>
-          <p>{{listing.desc}}</p>
-          <!--<fm-rating ng-model="$parent.restaurant.price" symbol="$" readonly="true" ></fm-rating>-->
-        </td>
-      </tr>
+          <tbody ng-repeat="listing in listings">
+            <tr data-toggle="collapse" data-target=".{{listing._id}}">
+              <td>
+                <div id="main" class="clear">
+                  <div class="image-left">
+                    <img class="img-rounded pull-left" ng-src="{{listing.img}}"> 
+                  </div>
+                  <div class="content-right">
+                    <h4> <span class="badge">{{$index+1}}.</span> {{listing.username}}</h4>
+                    <h5>{{listing.email}}</h5>
+                    <h5>{{listing.cuisine}}</h5>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td class="fixed-width">
+                 <div id="main">
+                    <h5>{{listing.state}},{{listing.country}}</h5>
+                </div>
+              </td>
+            </tr>
 
-      <tr >
-            <td class="hiddenRow">
+            <tr >
+              <td class="hiddenRow">
                 <div class="accordion-body collapse {{listing._id}}">
-                  <p ng-bind="listing.email">
+                  <p ng-bind="listing.desc">
                   </p>
                 </div>
-            </td>
-            <td class="hiddenRow">
-                <div class="accordion-body collapse {{listing._id}}">
-                  <p ng-bind="listing.phone">
-                  </p>
-                </div>
-            </td>
-            <td class="hiddenRow">
+              </td>
+              
+              <!--<td class="hiddenRow">
                 <div class="accordion-body collapse {{listing._id}}">
                   <table>
-                            <tr>
-                                <td>Revealed item 1</td>
-                            </tr>
-                            <tr>
-                                <td>Revealed item 2</td>
-                            </tr>
-                        </table>
-                  </p>
-                </div>
-            </td>
-        </tr>
+                    <tr>
+                      <td>Revealed item 1</td>
+                    </tr>
+                    <tr>
+                      <td>Revealed item 2</td>
+                    </tr>
+                  </table>
+                </p>
+              </div>
+            </td>-->
+          </tr>
+
         </tbody>
-    </table>
-  </div>
-</div>
-<hr/>
-    <!-- Footer -->
-    <div class="footer">
-        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Mahmood Contractor @ 2016</p>
+      </table>
     </div>
+  </div>
+  <hr/>
+  <!-- Footer -->
+  <div class="footer">
+    <p class="text-center"><span class="glyphicon glyphicon-check"></span> Mahmood Contractor @ 2016</p>
+  </div>
 </div>

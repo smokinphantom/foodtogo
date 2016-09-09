@@ -12,6 +12,7 @@ var UserSchema = new Schema({
     country: {type: String, required: true},
     state: {type: String, required: true},
     location: {type: [Number], required: true}, // [Long, Lat]
+    img: {type: String, required: true},
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now}
 });
