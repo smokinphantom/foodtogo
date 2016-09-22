@@ -30,6 +30,20 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
     });
     //});
 });
+
+     // Any function returning a promise object can be used to load values asynchronously
+  $scope.getLocation = function(val) {
+    return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+      params: {
+        address: val,
+        sensor: false
+      }
+    }).then(function(response){
+      return response.data.results.map(function(item){
+        return item.formatted_address;
+      });
+    });
+  };
     
     // Creates a new user based on the form fields
     $scope.createUser = function() {

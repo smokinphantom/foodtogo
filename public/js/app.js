@@ -1,5 +1,5 @@
 // Declares the initial angular module "meanMapApp". Module grabs other controllers and services.
-var app = angular.module('meanMapApp', ['addCtrl','listCtrl', 'geolocation','gservice','ngRoute']);
+var app = angular.module('meanMapApp', ['addCtrl','listCtrl','homeCtrl','geolocation','gservice','ngRoute','ui.bootstrap']);
 
 // configure our routes
 app.config(function($routeProvider) {
@@ -8,6 +8,7 @@ app.config(function($routeProvider) {
             // route for the home page
             .when('/', {
               templateUrl : 'pages/home.html',
+              controller  : 'homeCtrl'
             })
 
             // route for the post page

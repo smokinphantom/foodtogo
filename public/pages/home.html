@@ -1,16 +1,21 @@
 
-<div class="container">
-  
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Address" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-	</div>
+<div class="container" ng-controller="homeCtrl">
+
+  <div id="custom-search-input">
+    <div class="input-group col-md-12">
+      <input type="text" ng-model="asyncSelected" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-wait-ms="700" typeahead-no-results="noResults" class="form-control input-lg" placeholder="Address">
+      <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+      <div ng-show="noResults">
+        <i class="glyphicon glyphicon-remove"></i> No Results Found
+      </div>
+      <span class="input-group-btn">
+        <button class="btn btn-info btn-lg" type="button">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </span>
+      
+    </div>
+  </div>
 
 
   <div class="navbar navbar-fixed-bottom">
@@ -20,10 +25,10 @@
 </div>
 
 <style>
-  
-  body {
-    background-image: url(../img/2009.png);
-     background-size: cover;
-     background-repeat: no-repeat;
-  }
+
+body {
+  background-image: url(../img/2009.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 </style>

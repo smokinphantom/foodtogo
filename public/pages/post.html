@@ -28,11 +28,11 @@
                             <label for="username">Name * <span class="badge">Fields with * required</span></label>
                             <input type="text" class="form-control" id="username" placeholder="John Doe" ng-model="formData.username" required>
                         </div> 
-                        <div class="form-group">
+                        <div class="form-group col-md-8" style="padding-left: 0px;" >
                             <label for="cuisine">Email  <span class="glyphicon glyphicon-envelope"></span> *</label>
                             <input type="email" class="form-control" id="email" placeholder="aa@xxxx.com" ng-model="formData.email" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-md-4" style="padding-right: 0px;">
                             <label for="phone">Phone  <span class="glyphicon glyphicon-envelope"></span></label>
                             <input type="tel" class="form-control" id="tel" placeholder="123-456-7890" ng-model="formData.phone">
                         </div>
@@ -43,13 +43,22 @@
                         <div class="form-group">
                             <label for="description">Description</label> *
                             <textarea class="form-control" rows="3" id="description" placeholder="Chapati,paneer tikka masala" ng-model="formData.desc" required></textarea>
-                            
                         </div>
 
-                        <label for="country">Country</label> *
-                        <select class="form-control" id="country" name ="country" ng-model="formData.country" required></select><br/>
-                        <label for="state">State</label> *
-                        <select class="form-control" name ="state" id ="state" ng-model="formData.state" required></select><br/>
+                        <div class="form-group">
+                            <label for="country">Country</label> *
+                            <select class="form-control" id="country" name ="country" ng-model="formData.country" required></select>
+                        </div>
+
+                        <div class="form-group col-md-8" style="padding-left: 0px;">
+                            <label for="state">State</label> *
+                            <select class="form-control" name ="state" id ="state" ng-model="formData.state" required></select>
+                        </div>
+
+                        <div class="form-group col-md-4" style="padding-right: 0px;">
+                            <label for="zipcode">Zip</label> *
+                            <input type="text" class="form-control" id ="zipcode" placeholder="60077" ng-model="formData.zipcode" required></select>
+                        </div>
 
                         <div class="form-group">
                             <label for="latitude">Latitude</label>
