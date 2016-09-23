@@ -24,14 +24,18 @@ module.exports = function(app) {
           var coords = [];
           coords[0] =  params.split(",")[0];
           coords[1] = params.split(",")[1];
-
+          console.log(coords);
           // find a location
-          var query = User.find({
-            loc: {
-              $near: coords,
-              $maxDistance: 25
-            }
-          });
+          var query = User.find({ location :
+       { $near :
+          {
+            $geometry : {
+               type : "Point" ,
+               coordinates : coords },
+            $maxDistance : 25000
+          }
+       }
+    });
         }else{
            var query = User.find({});
         }
