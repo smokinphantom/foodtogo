@@ -3,13 +3,13 @@
 
   <div id="custom-search-input">
     <div class="input-group col-md-12">
-      <input type="text" ng-model="asyncSelected" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-wait-ms="700" typeahead-no-results="noResults" class="form-control input-lg" placeholder="Address">
+      <input type="text" ng-model="asyncSelected" uib-typeahead="address.formatted_address for address in getLocation($viewValue)|limitTo:4" typeahead-on-select="onSelect($item, $model, $label)" typeahead-loading="loadingLocations" typeahead-wait-ms="700" typeahead-no-results="noResults" class="form-control input-lg" placeholder="Address">
       <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
       <div ng-show="noResults">
         <i class="glyphicon glyphicon-remove"></i> No Results Found
       </div>
       <span class="input-group-btn">
-        <button class="btn btn-info btn-lg" type="button">
+        <button class="btn btn-info btn-lg" ng-click='goNext()' type="button">
           <i class="glyphicon glyphicon-search"></i>
         </button>
       </span>

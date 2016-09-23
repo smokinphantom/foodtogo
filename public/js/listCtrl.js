@@ -1,6 +1,6 @@
 // Creates the listCtrl Module and Controller. Note that it depends on the 'geolocation' module and service.
 var listCtrl = angular.module('listCtrl', ['geolocation','gservice']);
-listCtrl.controller('listCtrl', function($scope, $http,$rootScope,$timeout, gservice,geolocation){
+listCtrl.controller('listCtrl', function($scope, $http,$rootScope,$timeout,$routeParams, gservice,geolocation){
 
     // Initializes Variables
     // ----------------------------------------------------------------------------
@@ -30,17 +30,34 @@ listCtrl.controller('listCtrl', function($scope, $http,$rootScope,$timeout, gser
 
     // Creates a new user based on the form fields
     $scope.getUsers = function() {
-
+        var a = $routeParams.location;
         // Saves the user data to the db
-        $http.get('/users')
-        .success(function (data) {
+        if(a!==undefined){
+
+            $http.get('/users',{params: { "location": a } })
+            .success(function (data) {
+
+                $scope.listings = data;
+                console.log(data);
+
+            })
+            .error(function (data) {
+                console.log('Error: ' + data);
+            });
+        }
+        else{
+           $http.get('/users')
+           .success(function (data) {
 
             $scope.listings = data;
             console.log(data);
             
         })
-        .error(function (data) {
+           .error(function (data) {
             console.log('Error: ' + data);
         });
-    };
+       }
+
+       
+   };
 });

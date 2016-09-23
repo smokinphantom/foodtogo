@@ -23,6 +23,11 @@ app.config(function($routeProvider) {
               controller  : 'listCtrl'
             })
 
+            .when('/listing/:location', {
+              templateUrl: 'pages/listing.html',
+              controller: 'listCtrl'
+            })
+
             // route for the contact page
             .when('/contact', {
               templateUrl : 'pages/contactUs.html'

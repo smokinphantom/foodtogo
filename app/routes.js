@@ -17,9 +17,26 @@ module.exports = function(app) {
     // --------------------------------------------------------
     // Retrieve records for all users in the db
     app.get('/users', function(req, res){
+      var params = req.query.location;
+      if(params!==undefined){
 
+          // get coordinates [ <longitude> , <latitude> ]
+          var coords = [];
+          coords[0] =  params.split(",")[0];
+          coords[1] = params.split(",")[1];
+
+          // find a location
+          var query = User.find({
+            loc: {
+              $near: coords,
+              $maxDistance: 25
+            }
+          });
+        }else{
+           var query = User.find({});
+        }
         // Uses Mongoose schema to run the search (empty conditions)
-        var query = User.find({});
+       
         query.exec(function(err, users){
           if(err)
             res.send(err);
