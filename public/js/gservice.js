@@ -1,12 +1,14 @@
 // Creates the gservice factory. This will be the primary means by which we interact with Google Maps
 angular.module('gservice', [])
-    .factory('gservice', function($http,$rootScope){
+.factory('gservice', function($http,$rootScope){
 
         // Initialize Variables
         // -------------------------------------------------------------
         // Service our factory will return
         var googleMapService = {};
 
+
+        //var map = null;
         // Handling Clicks and location selection
         googleMapService.clickLat  = 0;
         googleMapService.clickLong = 0;
@@ -19,6 +21,27 @@ angular.module('gservice', [])
         var selectedLong = -98.35;
 
         // Functions
+        googleMapService.setMarker = function(country, state, zipcode, oldMap){
+           return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+              address: country+state+zipcode,
+              sensor: false
+          }
+      }).then(function(response){
+
+       oldMap.setCenter(response.data.results[0].geometry.location);
+       oldMap.setZoom(13);
+       var marker = new google.maps.Marker({
+        map: oldMap,
+        position: response.data.results[0].geometry.location,
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    });
+
+       googleMapService.clickLat = marker.getPosition().lat();
+       googleMapService.clickLong = marker.getPosition().lng();
+       $rootScope.$emit("clicked");
+   });
+  };
         // --------------------------------------------------------------
         // Refresh the Map with new data. Function will take new latitude and longitude coordinates.
         googleMapService.refresh = function(latitude, longitude){
@@ -55,11 +78,11 @@ angular.module('gservice', [])
 
                 // Create popup windows for each record
                 var  contentString =
-                    '<p><b>Cuisine</b>: ' + user.cuisine +
-                    '<br><b>Description</b>: ' + user.desc +
-                    '<br><b>Username</b>: ' + user.username +
-                    '<br><b>email</b>: ' + user.email +
-                    '</p>';
+                '<p><b>Cuisine</b>: ' + user.cuisine +
+                '<br><b>Description</b>: ' + user.desc +
+                '<br><b>Username</b>: ' + user.username +
+                '<br><b>email</b>: ' + user.email +
+                '</p>';
 
                 // Converts each of the JSON records into Google Maps Location format (Note [Lat, Lng] format).
                 locations.push({
@@ -72,8 +95,8 @@ angular.module('gservice', [])
                     gender: user.gender,
                     age: user.cuisine,
                     favlang: user.desc
-            });
-        }
+                });
+            }
         // location is now an array populated with records in Google Maps format
         return locations;
     };
@@ -112,11 +135,14 @@ var initialize = function(latitude, longitude) {
         });
     });
 
+     googleMapService.oldMap = map;
+     $rootScope.$broadcast("setmap");
+
     // Set initial location as a bouncing red marker
-    var initialLocation = new google.maps.LatLng(latitude, longitude);
+    /*var initialLocation = new google.maps.LatLng(latitude, longitude);
     var marker = new google.maps.Marker({
         position: initialLocation,
-          animation: google.maps.Animation.BOUNCE,
+        animation: google.maps.Animation.BOUNCE,
         map: map,
         icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     });
@@ -125,12 +151,12 @@ var initialize = function(latitude, longitude) {
 
     // Clicking on the Map moves the bouncing red marker
     google.maps.event.addListener(map, 'click', function(e){
-    var marker = new google.maps.Marker({
-        position: e.latLng,
-        animation: google.maps.Animation.BOUNCE,
-        map: map,
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
-    });
+        var marker = new google.maps.Marker({
+            position: e.latLng,
+            animation: google.maps.Animation.BOUNCE,
+            map: map,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+        });
 
     // When a new spot is selected, delete the old red bouncing marker
     if(lastMarker){
@@ -142,19 +168,19 @@ var initialize = function(latitude, longitude) {
     map.panTo(marker.position);
 
      // Update Broadcasted Variable (lets the panels know to change their lat, long values)
-    googleMapService.clickLat = marker.getPosition().lat();
-    googleMapService.clickLong = marker.getPosition().lng();
-    $rootScope.$broadcast("clicked");
+     googleMapService.clickLat = marker.getPosition().lat();
+     googleMapService.clickLong = marker.getPosition().lng();
+     $rootScope.$broadcast("clicked");
 
-});
-
-
+ });*/
 
 
 
-         
 
-    
+
+
+
+
 
 
     // Function for moving to a selected location

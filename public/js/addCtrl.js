@@ -10,40 +10,31 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
     var long = 0;
 
     // Set initial coordinates to the center of the US
-    $scope.formData.latitude = 39.500;
-    $scope.formData.longitude = -98.350;
+    $scope.latitude = 39.500;
+    $scope.longitude = -98.350;
 
-    // Refresh the map with new data
-    gservice.refresh(parseFloat($scope.formData.latitude), parseFloat($scope.formData.longitude));
     // Functions
     // ----------------------------------------------------------------------------
     // 
     // // Get coordinates based on mouse click. When a click event is detected....
     $rootScope.$on("clicked", function(){
 
-    // Run the gservice functions associated with identifying coordinates
-    //$timeout(function(){
-    //any code in here will automatically have an apply run afterwards
-    $scope.$apply(function(){
-        $scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
-        $scope.formData.longitude = parseFloat(gservice.clickLong).toFixed(3);
-    });
-    //});
+        $scope.latitude = parseFloat(gservice.clickLat).toFixed(3);
+        $scope.longitude = parseFloat(gservice.clickLong).toFixed(3);
 });
 
-     // Any function returning a promise object can be used to load values asynchronously
-  $scope.getLocation = function(val) {
-    return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: val,
-        sensor: false
-      }
-    }).then(function(response){
-      return response.data.results.map(function(item){
-        return item.formatted_address;
-      });
-    });
-  };
+     $rootScope.$on("setmap", function(){
+
+        $scope.oldMap = gservice.oldMap;
+});
+
+    // Refresh the map with new data
+    gservice.refresh(parseFloat($scope.latitude), parseFloat($scope.longitude));
+
+    $scope.findMarker = function(){
+        gservice.setMarker($scope.formData.country,$scope.formData.state,$scope.formData.zipcode,$scope.oldMap);
+    }
+
     
     // Creates a new user based on the form fields
     $scope.createUser = function() {
@@ -60,7 +51,7 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
             desc: $scope.formData.desc,
             country: $scope.formData.country,
             state: $scope.formData.state,
-            location: [$scope.formData.longitude, $scope.formData.latitude]
+            location: [$scope.longitude, $scope.latitude]
         };
 
         fd.append("data", JSON.stringify(userData));
@@ -89,7 +80,7 @@ addCtrl.controller('addCtrl', function($scope, $http,$rootScope,$timeout, geoloc
                 $scope.formData.state="";
                 
                 // Refresh the map with new data
-                gservice.refresh(parseFloat($scope.formData.latitude), parseFloat($scope.formData.longitude));
+                gservice.refresh(parseFloat($scope.latitude), parseFloat($scope.longitude));
             })
         .error(function (data) {
             console.log('Error: ' + data);
