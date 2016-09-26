@@ -32,7 +32,7 @@ module.exports = function(app) {
             $geometry : {
                type : "Point" ,
                coordinates : coords },
-            $maxDistance : 25000
+            $maxDistance : 150000
           }
        }
     });
