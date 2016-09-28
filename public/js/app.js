@@ -74,8 +74,7 @@ app.config(function($routeProvider) {
                         ngModel.$setViewValue('');
                         ngModel.$render();
                         //fail
-                        alert("File size is not 100 x 100. Please resize it and try uploading again.
-                          You may use http://resizeimage.net/ to resize and upload.");
+                        alert("File size is not 100 x 100. Please resize it and try uploading again.You may use http://resizeimage.net/ to resize and upload.");
                       }
                     };
                   }
